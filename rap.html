@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raport oględzin pojazdu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #001f3f; /* granat */
+      color: #fff;
+      margin: 0;
+      padding: 1rem;
+    }
+    h2, h3 {
+      background-color: #0074D9; /* niebieski */
+      padding: 0.5rem;
+      border-radius: 8px;
+    }
+    input, textarea, select, table {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      background-color: #00509e; /* niebieski odcien na inputy */
+      color: #fff;
+    }
+    table {
+      background: #ffffff10;
+      border-collapse: collapse;
+      color: #fff;
+      width: 100%;
+    }
+    table input, table textarea {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    th, td {
+      border: 1px solid #ffffff30;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    /* Szerokość pierwszej kolumny tabel w formularzu, aby pola nie były rozciągnięte */
+    table tr th:first-child,
+    table tr td:first-child {
+      width: 140px;
+      text-align: left;
+      padding-left: 1rem;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    button {
+      background-color: #0074D9;
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      width: 100%;
+      cursor: pointer;
+    }
+    textarea {
+      resize: vertical;
+    }
+    p {
+      line-height: 1.4;
+      margin: 0.5rem 0;
+    }
+    a {
+      color: #7FDBFF;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h2>Raport oględzin pojazdu</h2>
+  
+  <form id="raportForm">
+    <div class="section">
+      <h3>Dane pojazdu</h3>
+      <table>
+        <tr><th>VIN</th><td><input type="text" name="vin" placeholder="VIN" /></td></tr>
+        <tr><th>Marka</th><td><input type="text" name="marka" placeholder="Marka" /></td></tr>
+        <tr><th>Model</th><td><input type="text" name="model" placeholder="Model" /></td></tr>
+        <tr><th>Rok produkcji</th><td><input type="number" name="rok" placeholder="Rok produkcji" /></td></tr>
+        <tr><th>Pojemność silnika (cm3)</th><td><input type="number" name="pojemnosc" placeholder="Pojemność silnika (cm3)" /></td></tr>
+        <tr><th>Moc (KM)</th><td><input type="number" name="moc" placeholder="Moc (KM)" /></td></tr>
+        <tr><th>Przebieg (km)</th><td><input type="number" name="przebieg" placeholder="Przebieg (km)" /></td></tr>
+        <tr><th>Skrzynia biegów</th>
+          <td>
+            <select name="skrzynia" required>
+              <option value="" disabled selected>Wybierz</option>
+              <option value="Manualna">Manualna</option>
+              <option value="Automatyczna">Automatyczna</option>
+              <option value="Półautomatyczna">Półautomatyczna</option>
+              <option value="Manualna 6 biegów">Manualna 6 biegów</option>
+              <option value="Manualna 5 biegów">Manualna 5 biegów</option>
+            </select>
+          </td>
+        </tr>
+        <tr><th>Rodzaj paliwa</th>
+          <td>
+            <select name="rodzpali" required>
+              <option value="" disabled selected>Wybierz</option>
+              <option value="Benzyna">Benzyna</option>
+              <option value="Benzyna+CNG">Benzyna+CNG</option>
+              <option value="Benzyna+LPG">Benzyna+LPG</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Elektryczny">Elektryczny</option>
+              <option value="Etanol">Etanol</option>
+              <option value="Hybryda">Hybryda</option>
+              <option value="Hybryda PLUG-IN">Hybryda PLUG-IN</option>
+              <option value="Wodór">Wodór</option>
+            </select>
+          </td>
+        </tr>
+        <tr><th>Liczba drzwi</th><td><input type="number" name="liczbadrz" placeholder="Liczba drzwi" /></td></tr>
+        <tr><th>Data pierwszej rejestracji</th><td><input type="date" name="datpierw" placeholder="Data pierwszej rejestracji" /></td></tr>
+        <tr><th>Data pierwszej rejestracji w Polsce</th><td><input type="date" name="datpierwpol" placeholder="Data pierwszej rejestracji w Polsce" /></td></tr>
+        <tr><th>Kraj pochodzenia</th><td><input type="text" name="krajpo" placeholder="Kraj pochodzenia" /></td></tr>
+        <tr><th>Numer rejestracyjny</th><td><input type="text" name="numerrej" placeholder="Numer rejestracyjny" /></td></tr>
+        <tr><th>Dowód rejestracyjny</th><td><input type="text" name="dowrej" placeholder="Dowód rejestracyjny" /></td></tr>
+        <tr><th>Przegląd do</th><td><input type="date" name="przegdo" placeholder="Przegląd do" /></td></tr>
+        <tr><th>Ubezpieczenie do</th><td><input type="date" name="ubezdo" placeholder="Ubezpieczenie do" /></td></tr>
+        <tr><th>Możliwa weryfikacja w warsztacie lub ASO</th><td><input type="text" name="mozweraso" placeholder="Możliwa weryfikacja w warsztacie lub ASO" /></td></tr>
+        <tr><th>Forma sprzedaży</th><td><input type="text" name="formsp" placeholder="Forma sprzedaży" /></td></tr>
+        <tr><th>Ilość właścicieli</th><td><input type="number" name="ilowla" placeholder="Ilość właścicieli" /></td></tr>
+        <tr><th>Auto serwisowane</th>
+          <td>
+            <select name="autserw" required>
+              <option value="" disabled selected>Wybierz</option>
+              <option value="TAK">TAK</option>
+              <option value="NIE">NIE</option>
+            </select>
+          </td>
+        </tr>
+        <tr><th>Liczba kluczyków</th><td><input type="number" name="liczbklu" placeholder="Liczba kluczyków" /></td></tr>
+        <tr><th>Dodatkowy komplet opon</th><td><input type="text" name="dodaopon" placeholder="Dodatkowy komplet opon" /></td></tr>
+        <tr><th>Rodzaj oleju</th><td><input type="text" name="rodzole" placeholder="Rodzaj oleju" /></td></tr>
+        <tr><th>Od kiedy w posiadaniu sprzedającego</th><td><input type="date" name="odkiedwpo" placeholder="Od kiedy w posiadaniu sprzedającego" /></td></tr>
+      </table>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>Dane sprzedającego</h3>
+      <table>
+        <tr><th>Imię</th><td><input type="text" name="imie" placeholder="Imię" /></td></tr>
+        <tr><th>Numer telefonu</th><td><input type="tel" name="telefon" placeholder="Numer telefonu" /></td></tr>
+        <tr><th>Adres e-mail</th><td><input type="email" name="email" placeholder="Adres e-mail" /></td></tr>
+        <tr><th>Kod pocztowy</th><td><input type="text" name="kod" placeholder="Kod pocztowy" /></td></tr>
+        <tr><th>Data oględzin</th><td><input type="date" name="dataOgl" /></td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>Grubość powłoki lakierniczej (µm)</h3>
+      <table>
+        <tr><th>Element</th><th>µm</th></tr>
+        <tr><td>Maska</td><td><input type="number" name="lakier_maska" /></td></tr>
+        <tr><td>Dach</td><td><input type="number" name="lakier_dach" /></td></tr>
+        <tr><td>Błotnik lewy przód</td><td><input type="number" name="lakier_blp" /></td></tr>
+        <tr><td>Drzwi przód lewe</td><td><input type="number" name="lakier_drzpl" /></td></tr>
+        <tr><td>Słupek A lewy</td><td><input type="number" name="slupal" /></td></tr>
+        <tr><td>Drzwi tył lewe</td><td><input type="number" name="drzwitl" /></td></tr>
+        <tr><td>Słupek B lewy</td><td><input type="number" name="slupbl" /></td></tr>
+        <tr><td>Błotnik tył lewy</td><td><input type="number" name="blotl" /></td></tr>
+        <tr><td>Słupek C lewy</td><td><input type="number" name="slupcl" /></td></tr>
+        <tr><td>Klapa tylna</td><td><input type="number" name="klaptyl" /></td></tr>
+        <tr><td>Słupek C prawy</td><td><input type="number" name="slupcp" /></td></tr>
+        <tr><td>Błotnik tył prawy</td><td><input type="number" name="blottp" /></td></tr>
+        <tr><td>Drzwi tył prawe</td><td><input type="number" name="drzwitp" /></td></tr>
+        <tr><td>Słupek B prawy</td><td><input type="number" name="slupbp" /></td></tr>
+        <tr><td>Drzwi przód prawe</td><td><input type="number" name="drzwipp" /></td></tr>
+        <tr><td>Słupek A prawy</td><td><input type="number" name="slupap" /></td></tr>
+        <tr><td>Błotnik przód prawy</td><td><input type="number" name="blotpp" /></td></tr>
+      </table>
+      <textarea name="uwagiLakier" placeholder="Uwagi o lakierze"></textarea>
+    </div>
+
+    <div class="section">
+      <h3>Pomiar szczelin</h3>
+      <table>
+        <tr><th>Element</th><th>Szczelina</th></tr>
+        <tr><td>Błotnik prawy przód z maską</td><td><input type="text" name="szczeliny_bpp" /></td></tr>
+        <tr><td>Drzwi prawe przednie z błotnikiem przednim prawym</td><td><input type="text" name="szczeliny_dpp" /></td></tr>
+        <tr><td>Drzwi prawe przednie / drzwi prawe tylne</td><td><input type="text" name="szczeliny_dppdpt" /></td></tr>
+        <tr><td>Drzwi prawe tylne z błotnikiem tylnym prawym</td><td><input type="text" name="szczeliny_dptbtp" /></td></tr>
+        <tr><td>Klapa tylna</td><td><input type="text" name="szczeliny_klapa" /></td></tr>
+        <tr><td>Drzwi lewe tylne z błotnikiem tylnym lewym</td><td><input type="text" name="szczeliny_dltbtl" /></td></tr>
+        <tr><td>Drzwi lewe przednie/drzwi lewe tylne</td><td><input type="text" name="szczeliny_dlpdlt" /></td></tr>
+        <tr><td>Drzwi lewe przednie z błotnikiem przednim lewy</td><td><input type="text" name="szczeliny_dlpbpl" /></td></tr>
+        <tr><td>Błotnik lewy przód z maską</td><td><input type="text" name="szczeliny_blpm" /></td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>Pomiar opon</h3>
+      <table>
+        <tr>
+          <th>Pozycja</th><th>Producent</th><th>Model</th><th>Rozmiar</th><th>Data prod.</th><th>Bieżnik wew.</th><th>Bieżnik śr.</th><th>Bieżnik zew.</th>
+        </tr>
+        <tr>
+          <td>Przód L</td>
+          <td><input type="text" name="opona_PL_producent" /></td>
+          <td><input type="text" name="opona_PL_model" /></td>
+          <td><input type="text" name="opona_PL_rozmiar" /></td>
+          <td><input type="text" name="opona_PL_data" /></td>
+          <td><input type="text" name="opona_PL_bieżnik_wew" /></td>
+          <td><input type="text" name="opona_PL_bieżnik_śr" /></td>
+          <td><input type="text" name="opona_PL_bieżnik_zew" /></td>
+        </tr>
+        <tr>
+          <td>Tył L</td>
+          <td><input type="text" name="opona_TL_producent" /></td>
+          <td><input type="text" name="opona_TL_model" /></td>
+          <td><input type="text" name="opona_TL_rozmiar" /></td>
+          <td><input type="text" name="opona_TL_data" /></td>
+          <td><input type="text" name="opona_TL_bieżnik_wew" /></td>
+          <td><input type="text" name="opona_TL_bieżnik_śr" /></td>
+          <td><input type="text" name="opona_TL_bieżnik_zew" /></td>
+        </tr>
+        <tr>
+          <td>Tył P</td>
+          <td><input type="text" name="opona_TP_producent" /></td>
+          <td><input type="text" name="opona_TP_model" /></td>
+          <td><input type="text" name="opona_TP_rozmiar" /></td>
+          <td><input type="text" name="opona_TP_data" /></td>
+          <td><input type="text" name="opona_TP_bieżnik_wew" /></td>
+          <td><input type="text" name="opona_TP_bieżnik_śr" /></td>
+          <td><input type="text" name="opona_TP_bieżnik_zew" /></td>
+        </tr>
+        <tr>
+          <td>Przód P</td>
+          <td><input type="text" name="opona_PP_producent" /></td>
+          <td><input type="text" name="opona_PP_model" /></td>
+          <td><input type="text" name="opona_PP_rozmiar" /></td>
+          <td><input type="text" name="opona_PP_data" /></td>
+          <td><input type="text" name="opona_PP_bieżnik_wew" /></td>
+          <td><input type="text" name="opona_PP_bieżnik_śr" /></td>
+          <td><input type="text" name="opona_PP_bieżnik_zew" /></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>Oględziny szyb</h3>
+      <table>
+        <tr><th>Element</th><th>Producent</th><th>Numer</th><th>Rocznik</th></tr>
+        <tr>
+          <td>Szyba przednia</td>
+          <td><input type="text" name="szyba1_prod" /></td>
+          <td><input type="text" name="szyba1_num" /></td>
+          <td><input type="text" name="szyba1_rok" /></td>
+        </tr>
+        <tr>
+          <td>Szyba boczna prawa przednia</td>
+          <td><input type="text" name="szyba2_prod" /></td>
+          <td><input type="text" name="szyba2_num" /></td>
+          <td><input type="text" name="szyba2_rok" /></td>
+        </tr>
+        <tr>
+          <td>Szyba boczna prawa tylna</td>
+          <td><input type="text" name="szyba3_prod" /></td>
+          <td><input type="text" name="szyba3_num" /></td>
+          <td><input type="text" name="szyba3_rok" /></td>
+        </tr>
+        <tr>
+          <td>Szyba karoseryjna prawa</td>
+          <td><input type="text" name="szyba4_prod" /></td>
+          <td><input type="text" name="szyba4_num" /></td>
+          <td><input type="text" name="szyba4_rok" /></td>
+        </tr>
+        <tr>
+          <td>Szyba klapy tylnej</td>
+          <td><input type="text" name="szyba5_prod" /></td>
+          <td><input type="text" name="szyba5_num" /></td>
+          <td><input type="text" name="szyba5_rok" /></td>
+        </tr>
+        <tr>
+          <td>Szyba karoseryjna lewa</td>
+          <td><input type="text" name="szyba6_prod" /></td>
+          <td><input type="text" name="szyba6_num" /></td>
+          <td><input type="text" name="szyba6_rok" /></td>
+        </tr>
+        <tr>
+          <td>Szyba boczna lewa tylna</td>
+          <td><input type="text" name="szyba7_prod" /></td>
+          <td><input type="text" name="szyba7_num" /></td>
+          <td><input type="text" name="szyba7_rok" /></td>
+        </tr>
+        <tr>
+          <td>Szyba boczna lewa przednia</td>
+          <td><input type="text" name="szyba8_prod" /></td>
+          <td><input type="text" name="szyba8_num" /></td>
+          <td><input type="text" name="szyba8_rok" /></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>Stan tapicerki</h3>
+      <textarea name="statap" placeholder="Stan tapicerki..."></textarea>
+    </div>
+
+    <div class="section">
+      <h3>Ostatnie naprawy/przeglądy</h3>
+      <textarea name="ostnap" placeholder="Ostatnie naprawy..."></textarea>
+    </div>
+
+    <div class="section">
+      <h3>Planowane naprawy/serwis</h3>
+      <textarea name="plannap" placeholder="Planowane naprawy..."></textarea>
+    </div>
+
+    <div class="section">
+      <h3>Jazda próbna</h3>
+      <textarea name="jazdpro" placeholder="Jazda próba..."></textarea>
+    </div>
+
+    <div class="section">
+      <h3>Uwagi końcowe</h3>
+      <textarea name="uwagi" placeholder="Uwagi..."></textarea>
+    </div>
+
+    <button type="button" onclick="zapiszHTML()">Zapisz do HTML</button>
+  </form>
+
+  <script>
+    function zapiszHTML() {
+      const form = document.getElementById('raportForm');
+      const data = new FormData(form);
+
+      let html = `
+      <!DOCTYPE html>
+      <html lang="pl">
+      <head>
+        <meta charset="UTF-8" />
+        <title>Raport oględzin pojazdu - wynik</title>
+        <style>
+          body { font-family: Arial, sans-serif; background: #001f3f; color: #fff; margin: 1rem; }
+          h2, h3 { background: #0074D9; padding: 0.5rem; border-radius: 8px; }
+          table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+          th, td { border: 1px solid #fff; padding: 0.5rem; text-align: left; }
+          th { background: #0074D9; }
+          p { margin: 0.3rem 0; }
+        </style>
+      </head>
+      <body>
+        <h2>Raport oględzin pojazdu</h2>
+      `;
+
+      // Dane pojazdu
+      html += '<h3>Dane pojazdu</h3><table>';
+      const vehicleFields = ['vin', 'marka', 'model', 'rok', 'pojemnosc', 'moc', 'przebieg', 'skrzynia', 'rodzpali', 'liczbadrz', 'datpierw', 'datpierwpol', 'krajpo', 'numerrej', 'dowrej', 'przegdo', 'ubezdo', 'mozweraso', 'formsp', 'ilowla', 'autserw', 'liczbklu', 'dodaopon', 'rodzole', 'odkiedwpo'];
+      const vehicleLabels = ['VIN', 'Marka', 'Model', 'Rok produkcji', 'Pojemność silnika (cm3)', 'Moc (KM)', 'Przebieg (km)', 'Skrzynia biegów', 'Rodzaj paliwa', 'Liczba drzwi', 'Data pierwszej rejestracji', 'Data pierwszej rejestracji w Polsce', 'Kraj pochodzenia', 'Numer rejestracyjny', 'Dowód rejestracyjny', 'Przegląd do', 'Ubezpieczenie do', 'Możliwa weryfikacja w warsztacie lub ASO', 'Forma sprzedaży', 'Ilość właścicieli', 'Auto serwisowane', 'Liczba kluczyków', 'Dodatkowy komplet opon', 'Rodzaj oleju', 'Od kiedy w posiadaniu sprzedającego'];
+      for(let i = 0; i < vehicleFields.length; i++) {
+        const val = data.get(vehicleFields[i]) || '-';
+        html += `<tr><th>${vehicleLabels[i]}</th><td>${val}</td></tr>`;
+      }
+      html += '</table>';
+
+      // Dane sprzedającego
+      html += '<h3>Dane sprzedającego</h3><table>';
+      const sellerFields = ['imie', 'telefon', 'email', 'kod', 'dataOgl'];
+      const sellerLabels = ['Imię', 'Numer telefonu', 'Adres e-mail', 'Kod pocztowy', 'Data oględzin'];
+      for(let i = 0; i < sellerFields.length; i++) {
+        let val = data.get(sellerFields[i]) || '-';
+        // Formatowanie daty
+        if (sellerFields[i] === 'dataOgl' && val !== '-') {
+          val = new Date(val).toLocaleDateString('pl-PL');
+        }
+        html += `<tr><th>${sellerLabels[i]}</th><td>${val}</td></tr>`;
+      }
+      html += '</table>';
+
+      // Grubość powłoki lakierniczej
+      html += '<h3>Grubość powłoki lakierniczej (µm)</h3><table>';
+      const lacquerFields = ['lakier_maska', 'lakier_dach', 'lakier_blp', 'lakier_drzpl', 'slupal', 'drzwitl', 'slupbl', 'blotl', 'slupcl', 'klaptyl', 'slupcp', 'blottp', 'drzwitp', 'slupbp', 'drzwipp', 'slupap', 'blotpp', 'ilowla'];
+      const lacquerLabels = ['Maska', 'Dach', 'Błotnik lewy przód', 'Drzwi przód lewe', 'Słupek A lewy', 'Drzwi tył lewe', 'Słupek B lewy', 'Błotnik tył lewy', 'Słupek C lewy', 'Klapa tylna', 'Słupek C prawy', 'Błotnik tył prawy', 'Drzwi tył prawe', 'Słupek B prawy', 'Drzwi przód prawe', 'Słupek A prawy', 'Błotnik przód prawy'];
+      for(let i=0; i<lacquerFields.length; i++) {
+        const val = data.get(lacquerFields[i]) || '-';
+        html += `<tr><th>${lacquerLabels[i]}</th><td>${val}</td></tr>`;
+      }
+      html += '</table>';
+      html += `<p><strong>Uwagi o lakierze:</strong><br>${data.get('uwagiLakier')?.replace(/\n/g, '<br>') || '-'}</p>`;
+
+      // Pomiar szczelin
+      html += '<h3>Pomiar szczelin</h3><table>';
+      const gapFields = ['szczeliny_bpp', 'szczeliny_dpp', 'szczeliny_dppdpt', 'szczeliny_dptbtp', 'szczeliny_klapa', 'szczeliny_dltbtl', 'szczeliny_dlpdlt', 'szczeliny_dlpbpl', 'szczeliny_blpm'];
+      const gapLabels = ['Błotnik prawy przód z maską', 'Drzwi prawe przednie z błotnikiem przednim prawym', 'Drzwi prawe przednie/drzwi prawe tylne', 'Drzwi prawe tylne z błotnikiem tylnym prawym', 'Klapa tylna', 'Drzwi lewe tylne z błotnikiem tylnym lewym', 'Drzwi lewe przednie/drzwi lewe tylne', 'Drzwi lewe przednie z błotnikiem przednim lewy', 'Błotnik lewy przód z maską'];
+      for(let i=0; i<gapFields.length; i++) {
+        const val = data.get(gapFields[i]) || '-';
+        html += `<tr><th>${gapLabels[i]}</th><td>${val}</td></tr>`;
+      }
+      html += '</table>';
+
+      // Pomiar opon
+      html += '<h3>Pomiar opon</h3><table>';
+      html += `<tr>
+        <th>Pozycja</th><th>Producent</th><th>Model</th><th>Rozmiar</th><th>Data prod.</th><th>Bieżnik wew.</th><th>Bieżnik śr.</th><th>Bieżnik zew.</th>
+      </tr>`;
+      const tirePositions = ['PL', 'TL', 'TP', 'PP'];
+      for(const pos of tirePositions) {
+        html += '<tr>';
+        html += `<th>${pos === 'PL' ? 'Przód L' : pos === 'TL' ? 'Tył L' : pos === 'TP' ? 'Tył P' : 'Przód P'}</th>`;
+        html += `<td>${data.get(`opona_${pos}_producent`) || '-'}</td>`;
+        html += `<td>${data.get(`opona_${pos}_model`) || '-'}</td>`;
+        html += `<td>${data.get(`opona_${pos}_rozmiar`) || '-'}</td>`;
+        html += `<td>${data.get(`opona_${pos}_data`) || '-'}</td>`;
+        html += `<td>${data.get(`opona_${pos}_bieżnik_wew`) || '-'}</td>`;
+        html += `<td>${data.get(`opona_${pos}_bieżnik_śr`) || '-'}</td>`;
+        html += `<td>${data.get(`opona_${pos}_bieżnik_zew`) || '-'}</td>`;
+        html += '</tr>';
+      }
+      html += '</table>';
+
+      // Oględziny szyb
+      html += '<h3>Oględziny szyb</h3><table>';
+      const glassFields = [
+        ['szyba1_prod', 'szyba1_num', 'szyba1_rok'],
+        ['szyba2_prod', 'szyba2_num', 'szyba2_rok'],
+        ['szyba3_prod', 'szyba3_num', 'szyba3_rok'],
+        ['szyba4_prod', 'szyba4_num', 'szyba4_rok'],
+        ['szyba5_prod', 'szyba5_num', 'szyba5_rok'],
+        ['szyba6_prod', 'szyba6_num', 'szyba6_rok'],
+        ['szyba7_prod', 'szyba7_num', 'szyba7_rok'],
+        ['szyba8_prod', 'szyba8_num', 'szyba8_rok']
+      ];
+      const glassLabels = ['Szyba przednia', 'Szyba boczna prawa przednia', 'Szyba boczna prawa tylna', 'Szyba karoseryjna prawa', 'Szyba klapy tylnej', 'Szyba karoseryjna lewa', 'Szyba boczna lewa tylna', 'Szyba boczna lewa przednia'];
+      html += '<tr><th>Element</th><th>Producent</th><th>Numer</th><th>Rocznik</th></tr>';
+      for(let i=0; i<glassFields.length; i++) {
+        html += '<tr>';
+        html += `<th>${glassLabels[i]}</th>`;
+        for(const field of glassFields[i]) {
+          html += `<td>${data.get(field) || '-'}</td>`;
+        }
+        html += '</tr>';
+      }
+      html += '</table>';
+
+      // Stan tapicerki
+      html += `<h3>Stan tapicerki</h3><p>${data.get('statap')?.replace(/\n/g, '<br>') || '-'}</p>`;
+
+      // Ostatnie naprawy/przeglądy
+      html += `<h3>Ostatnie naprawy/przeglądy</h3><p>${data.get('ostnap')?.replace(/\n/g, '<br>') || '-'}</p>`;
+
+      // Planowane naprawy/serwis
+      html += `<h3>Planowane naprawy/serwis</h3><p>${data.get('plannap')?.replace(/\n/g, '<br>') || '-'}</p>`;
+
+      // Jazda próbna
+      html += `<h3>Jazda próbna</h3><p>${data.get('jazdpro')?.replace(/\n/g, '<br>') || '-'}</p>`;
+
+      // Uwagi końcowe
+      html += `<h3>Uwagi końcowe</h3><p>${data.get('uwagi')?.replace(/\n/g, '<br>') || '-'}</p>`;
+
+      html += `
+      </body>
+      </html>
+      `;
+
+      const blob = new Blob([html], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'raport_ogledzin.html';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>

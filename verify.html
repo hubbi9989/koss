@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weryfikacja wyposażenia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --granat: #001F3F;
+      --niebieski: #007BFF;
+      --bialy: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--granat);
+      color: var(--bialy);
+      padding: 20px;
+    }
+
+    h2 {
+      background-color: var(--niebieski);
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    section {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+      background-color: #ffffff10;
+      color: var(--bialy);
+      outline: none;
+    }
+
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+      background-color: #ffffff10;
+      color: var(--bialy);
+      outline: none;
+    }
+
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+      background-color: #ffffff10;
+      color: var(--bialy);
+      outline: none;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #cccccc;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-right: 10px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      font-weight: 400;
+    }
+
+    button {
+      width: 100%;
+      background-color: var(--niebieski);
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 1.1em;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Weryfikacja wyposażenia</h2>
+  <section>
+    <label>Marka: <input type="text" id="marka" placeholder="Wpisz markę..." /></label>
+    <label>Model: <input type="text" id="model" placeholder="Wpisz model..." /></label>
+    <label>Wersja: <input type="text" id="wersja" placeholder="Wpisz wersję..." /></label>
+    <label>Generacja: <input type="text" id="generacja" placeholder="Wpisz generację..." /></label>
+    <label>Dodatkowy pakiet stylistyczny: <input type="text" id="dodpak" placeholder="Wpisz nazwę..." /></label>
+    <label>Rodzaj pojazdu:
+  <select id="rodzpoj">
+    <option>Osobowe</option>
+    <option>Motocykle</option>
+    <option>Dostawcze</option>
+    <option>Specjalne</option>
+    <option>Przyczepy</option>
+    <option>Kempingowe</option>
+    <option>Ciężarowe</option>
+  </select>
+  <label>Typ nadwozia:
+  <select id="typnadw">
+    <option>Auto małe</option>
+    <option>Auto miejskie</option>
+    <option>Coupe</option>
+    <option>Kabriolet</option>
+    <option>Kombi</option>
+    <option>Kompakt</option>
+    <option>Minivan</option>
+    <option>Sedan</option>
+    <option>SUV</option>
+    <option>Pick-up</option>
+    <option>VAN</option>
+  </select>
+</label>
+<label>Rodzaj paliwa:
+  <select id="rodzpal">
+    <option>Benzyna</option>
+    <option>Benzyna + CNG</option>
+    <option>Benzyna + LPG</option>
+    <option>Diesel</option>
+    <option>Elektryczny</option>
+    <option>Etanol</option>
+    <option>Hybryda</option>
+    <option>Hybryda PLUG-IN</option>
+    <option>Wodór</option>
+  </select>
+</label>
+<label>AdBlue:
+  <select id="adblue">
+    <option>Nie dotyczy</option>
+    <option>TAK</option>
+    <option>NIE</option>
+  </select>
+</label>
+<label>Rok produkcji: <input type="text" id="rok-produkcji" placeholder="Wpisz rok produkcji..." /></label>
+<label>VIN: <input type="text" id="vin" placeholder="Wpisz VIN..." /></label>
+<label>Przebieg: <input type="number" id="przebieg" placeholder="Wpisz Przebieg..." /></label>
+<label>Pojemność silnika cm3: <input type="text" id="pojemno-silnika" placeholder="Wpisz Pojemność silnika..." /></label>
+<label>Kod silnika: <input type="text" id="kod-silnika" placeholder="Wpisz Kod silnika..." /></label>
+<label>Moc silnika: <input type="text" id="moc-silnika" placeholder="Wpisz Moc silnika..." /></label>
+<label>Skrzynia biegów:
+  <select id="skrzbieg">
+    <option>Manualna</option>
+    <option>Automatyczna</option>
+    <option>Półautomatyczna</option>
+  </select>
+</label>
+<label>Napęd:
+  <select id="naped">
+    <option>Przedni</option>
+    <option>Tylny</option>
+    <option>4x4 - stały</option>
+    <option>4x4 - dołączany ręcznie</option>
+    <option>4x4 - dołączany automatycznie</option>
+  </select>
+</label>
+<label>Auto uszkodzone:
+  <select id="autouszko">
+    <option>TAK</option>
+    <option>NIE</option>
+  </select>
+</label>
+<label>Pojazd importowany:
+  <select id="pojimpo">
+    <option>TAK</option>
+    <option>NIE</option>
+  </select>
+</label>
+<label>Numer rejestracyjny: <input type="text" id="numer-rejestracyjny" placeholder="Wpisz Numer rejestracyjny..." /></label>
+<label>Data pierwszej rejestracji: <input type="date" id="data-pierwszej-rejestracji" placeholder="Wpisz Data pierwszej rejestracji..." /></label>
+<label>Liczba drzwi: <input type="number" id="liczba-drzwi" placeholder="Wpisz Liczba drzwi..." /></label>
+<label>Liczba miejsc: <input type="number" id="liczba-miejsc" placeholder="Wpisz Liczba miejsc..." /></label>
+<label>Liczba właścicieli: <input type="number" id="liczba-w-a-cicieli" placeholder="Wpisz Liczba właścicieli..." /></label>
+<label>Ilość kluczyków: <input type="number" id="ilo-kluczyk-w" placeholder="Wpisz Ilość kluczyków..." /></label>
+<label>Auto serwisowane: <input type="text" id="auto-serwisowane" placeholder="Wpisz Auto serwisowane..." /></label>
+<label>Kraj pochodzenia: <input type="text" id="kraj-pochodzenia" placeholder="Wpisz Kraj pochodzenia..." /></label>
+<label>Auto zarejestrowane:
+  <select id="autozare">
+    <option>TAK</option>
+    <option>NIE</option>
+  </select>
+</label>
+<label>Ubezpieczenie do: <input type="date" id="ubezpieczenie-do" placeholder="Wpisz Ubezpieczenie do..." /></label>
+<label>Kolor nadwozia: <input type="text" id="kolor-nadwozia" placeholder="Wpisz Kolor nadwozia..." /></label>
+<label>Kod lakieru: <input type="text" id="kod-lakieru" placeholder="Wpisz Kod lakieru..." /></label>
+<label>Rozmiar kół: <input type="number" id="rozmiar-k" placeholder="Wpisz Rozmiar kół..." /></label>
+</label>
+
+</section>
+
+  <h2>Audio i multimedia</h2>
+  <section>
+    <label>Producent nagłośnienia: <input type="text" id="naglosnienie" placeholder="Producent audio..." /></label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" id="aux" /> AUX</label>
+      <label><input type="checkbox" id="usb" /> USB</label>
+      <label><input type="checkbox" id="carplay" /> Apple CarPlay</label>
+      <label><input type="checkbox" id="android_auto" /> Android Auto</label>
+      <label><input type="checkbox" id="bluetooth" /> Bluetooth</label>
+      <label><input type="checkbox" id="radio" /> Radio</label>
+      <label><input type="checkbox" id="radio_fabryczne" /> Radio fabryczne</label>
+      <label><input type="checkbox" id="subwoofer" /> Subwoofer</label>
+      <label><input type="checkbox" id="mp3" /> MP3</label>
+      <label><input type="checkbox" id="cd" /> CD</label>
+      <label><input type="checkbox" id="zestaw_gosnomowiacy" /> Zestaw głośnomówiący</label>
+      <label><input type="checkbox" id="adowanie_bezprzewodowe" /> Ładowanie bezprzewodowe</label>
+      <label><input type="checkbox" id="nawigacja" /> Nawigacja</label>
+    </div>
+  </section>
+
+  <h2>Komfort</h2>
+  <section class="checkbox-group">
+    <label><input type="checkbox" id="tap_material" /> Tapicerka materiałowa</label>
+    <label><input type="checkbox" id="tap_skorzana" /> Tapicerka skórzana</label>
+    <label><input type="checkbox" id="tap_welurowa" /> Tapicerka welurowa</label>
+    <label><input type="checkbox" id="tap_polskory" /> Półskóry</label>
+    <label><input type="checkbox" id="tap_alcantara" /> Alcantara</label>
+    <label><input type="checkbox" id="fotele_wentylowane" /> Fotele wentylowane</label>
+    <label><input type="checkbox" id="fotel_kierowcy_regulowany_elektrycznie" /> Fotel kierowcy regulowany elektrycznie</label>
+    <label><input type="checkbox" id="fotel_pasazera_regulowany_elektrycznie" /> Fotel pasażera regulowany elektrycznie</label>
+    <label><input type="checkbox" id="kolumna_kierowcy_regulowana_elektrycznie" /> Kolumna kierowcy regulowana elektrycznie</label>
+    <label><input type="checkbox" id="podgrzewana_kierownica" /> Podgrzewana kierownica</label>
+    <label><input type="checkbox" id="kierownica_multifunkcyjna" /> Kierownica multifunkcyjna</label>
+    <label><input type="checkbox" id="opatki" /> Łopatki</label>
+    <label><input type="checkbox" id="fotele_przod_podgrzewane" /> Fotele przód podgrzewane</label>
+    <label><input type="checkbox" id="fotele_ty_podgrzewane" /> Fotele tył podgrzewane</label>
+    <label><input type="checkbox" id="fotele_z_funkcja_masazu" /> Fotele z funkcją masażu</label>
+    <label><input type="checkbox" id="klimatyzacja_manualna" /> Klimatyzacja manualna</label>
+    <label><input type="checkbox" id="klimatyzacja_automatyczna" /> Klimatyzacja automatyczna</label>
+    <label><input type="checkbox" id="klimatyzacja_dwustrefowa" /> Klimatyzacja dwustrefowa</label>
+    <label><input type="checkbox" id="klimatyzacja_dla_pasazerow_kanapy_tylnej" /> Klimatyzacja dla pasażerów kanapy tylnej</label>
+    <label><input type="checkbox" id="ogrzewanie_postojowe" /> Ogrzewanie postojowe</label>
+    <label><input type="checkbox" id="szyby_przednie_elektryczne" /> Szyby przednie elektryczne</label>
+    <label><input type="checkbox" id="szyby_tylne_elektryczne" /> Szyby tylne elektryczne</label>
+    <label><input type="checkbox" id="szyba_przednia_podgrzewana" /> Szyba przednia podgrzewana</label>
+    <label><input type="checkbox" id="dach_panoramiczny" /> Dach panoramiczny</label>
+    <label><input type="checkbox" id="rolety_szyb_drzwi_tylnych" /> Rolety szyb drzwi tylnych</label>
+    <label><input type="checkbox" id="roleta_szyby_tylnej" /> Roleta szyby tylnej</label>
+    <label><input type="checkbox" id="szyberdach" /> Szyberdach</label>
+    <label><input type="checkbox" id="dach_panoramiczny_otwierany" /> Dach panoramiczny otwierany</label>
+    <label><input type="checkbox" id="podokietnik" /> Podłokietnik</label>
+    <label><input type="checkbox" id="komputer_pokadowy" /> Komputer pokładowy</label>
+    <label><input type="checkbox" id="adowanie_indukcyjne" /> Ładowanie indukcyjne</label>
+  </section>
+
+  <h2>Auta elektryczne</h2>
+  <section class="checkbox-group">
+    <label><input type="checkbox" id="odzysk" /> System odzyskiwania energii</label>
+    <label><input type="checkbox" id="szybkie_ladowanie" /> Funkcja szybkiego ładowania</label>
+    <label><input type="checkbox" id="kabel" /> Kabel do ładowania</label>
+  </section>
+
+  <h2>Bezpieczeństwo</h2>
+  <section class="checkbox-group">
+    <label><input type="checkbox" id="airbag_kierowca" /> Poduszka powietrzna kierowcy</label>
+    <label><input type="checkbox" id="airbag_pasażer" /> Poduszka powietrzna pasażera</label>
+    <label><input type="checkbox" id="airbag_kolana" /> Poduszka powietrzna kierowcy-kolanowa</label>
+    <label><input type="checkbox" id="poduszki_powietrzne_boczne" /> Poduszki powietrzne boczne</label>
+    <label><input type="checkbox" id="kurtyny_powietrzne" /> Kurtyny powietrzne</label>
+    <label><input type="checkbox" id="poduszki_powietrzne_kanapy_tylnej" /> Poduszki powietrzne kanapy tylnej</label>
+    <label><input type="checkbox" id="poduszka_powietrzna_centralna" /> Poduszka powietrzna centralna</label>
+    <label><input type="checkbox" id="system_ochrony_pieszych" /> System ochrony pieszych</label>
+    <label><input type="checkbox" id="isofix" /> ISOFIX</label>
+    <label><input type="checkbox" id="abs" /> ABS</label>
+    <label><input type="checkbox" id="esp" /> ESP</label>
+    <label><input type="checkbox" id="asystent_pasa_ruchu" /> Asystent pasa ruchu</label>
+    <label><input type="checkbox" id="asystent_martwego_pola" /> Asystent martwego pola</label>
+    <label><input type="checkbox" id="aktywny_tempomat" /> Aktywny tempomat</label>
+    <label><input type="checkbox" id="radar" /> Radar</label>
+    <label><input type="checkbox" id="monitorowanie_skupienia_kierowcy" /> Monitorowanie skupienia kierowcy</label>
+    <label><input type="checkbox" id="system_rozpoznawania_znakow_drogowych" /> System rozpoznawania znaków drogowych</label>
+  </section>
+
+  <h2>Oświetlenie zewnętrzne</h2>
+  <section>
+    <label>Rodzaj reflektorów:
+      <select id="reflektory">
+        <option>Lampy zwykłe</option>
+        <option>Ksenon</option>
+        <option>Bi-Ksenon</option>
+        <option>LED</option>
+        <option>Światła laserowe</option>
+        <option>Matrix</option>
+      </select>
+    </label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" id="przeciwmgielne" /> Światła przeciwmgielne</label>
+      <label><input type="checkbox" id="dzien_led" /> Światła do jazdy dziennej LED</label>
+      <label><input type="checkbox" id="doswietlanie_zakretow" /> Doświetlanie zakrętów</label>
+      <label><input type="checkbox" id="swiata_obrysowe" /> Światła obrysowe</label>
+      <label><input type="checkbox" id="reflektory_dodatkowe" /> Reflektory dodatkowe</label>
+      <label><input type="checkbox" id="spryskiwacze_reflektorow" /> Spryskiwacze reflektorów</label>
+    </div>
+  </section>
+
+  <h2>Wspomaganie kierowcy</h2>
+  <section class="checkbox-group">
+    <label><input type="checkbox" id="czujniki_przod" /> Czujniki parkowania przód</label>
+    <label><input type="checkbox" id="czujniki_tyl" /> Czujniki parkowania tył</label>
+    <label><input type="checkbox" id="park_assist" /> Park Assist</label>
+    <label><input type="checkbox" id="kamera_przod" /> Kamera przód</label>
+    <label><input type="checkbox" id="kamera_ty" /> Kamera tył</label>
+    <label><input type="checkbox" id="kamera_360_stopni" /> Kamera 360 stopni</label>
+    <label><input type="checkbox" id="centralny_zamek" /> Centralny zamek</label>
+    <label><input type="checkbox" id="czujnik_deszczu" /> Czujnik deszczu</label>
+    <label><input type="checkbox" id="klapa_tylna_otwierana_elektrycznie" /> Klapa tylna otwierana elektrycznie</label>
+    <label><input type="checkbox" id="klapa_tylna_otwierana_bezdotykowo" /> Klapa tylna otwierana bezdotykowo</label>
+    <label><input type="checkbox" id="head_up" /> Head UP</label>
+    <label><input type="checkbox" id="system_bezkluczykowy" /> System bezkluczykowy</label>
+    <label><input type="checkbox" id="system_start-stop" /> System start-stop</label>
+    <label><input type="checkbox" id="tempomat" /> Tempomat</label>
+    <label><input type="checkbox" id="wspomaganie_kierownicy" /> Wspomaganie kierownicy</label>
+    <label><input type="checkbox" id="ukad_wspierajacy_ruszanie_ze_wzniesienia" /> Układ wspierający ruszanie ze wzniesienia</label>
+    <label><input type="checkbox" id="kamera_noktowizyjna" /> Kamera noktowizyjna</label>
+    <label><input type="checkbox" id="hamulec_reczny_elektryczny" /> Hamulec ręczny elektryczny</label>
+  </section>
+
+  <h2>Opony i zawieszenie</h2>
+  <section>
+    <label>Rodzaj opon:
+      <select id="opony">
+        <option>Letnie</option>
+        <option>Zimowe</option>
+        <option>Całoroczne</option>
+      </select>
+    </label>
+    <label>Czujniki w oponach:
+      <select id="czujniki_opony">
+        <option>TAK</option>
+        <option>NIE</option>
+      </select>
+    </label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" id="zawieszenie_reg" /> Zawieszenie regulowane</label>
+      <label><input type="checkbox" id="zawieszenie_sport" /> Zawieszenie sportowe</label>
+      <label><input type="checkbox" id="zawieszenie_pneumatyczne" /> Zawieszenie pneumatyczne</label>
+      <label><input type="checkbox" id="zawieszenie_hydropneumatyczne" /> Zawieszenie hydropneumatyczne</label>
+      <label><input type="checkbox" id="felgi_aluminiowe" /> Felgi aluminiowe</label>
+      <label><input type="checkbox" id="dodatkowy_komplet_opon" /> Dodatkowy komplet opon</label>
+      <label><input type="checkbox" id="koo_zapasowe" /> Koło zapasowe</label>
+      <label><input type="checkbox" id="zestaw_naprawczy" /> Zestaw naprawczy</label>
+    </div>
+  </section>
+
+  <h2>Wyposażenie dodatkowe</h2>
+  <section class="checkbox-group">
+    <label><input type="checkbox" id="wydech" /> Wydech sportowy</label>
+    <label><input type="checkbox" id="hak" /> Hak</label>
+    <label><input type="checkbox" id="hak_elektryczny" /> Hak elektryczny</label>
+    <label><input type="checkbox" id="relingi_dachowe" /> Relingi dachowe</label>
+    <label><input type="checkbox" id="bagaznik_dachowy" /> Bagażnik dachowy</label>
+    <label><input type="checkbox" id="szyby_przyciemniane" /> Szyby przyciemniane</label>
+    <label><input type="checkbox" id="alarm" /> Alarm</label>
+    <label><input type="checkbox" id="roleta_bagaznika" /> Roleta bagażnika</label>
+    <label><input type="checkbox" id="dociaganie_drzwi" /> Dociąganie drzwi</label>
+    <label><input type="checkbox" id="gniazdo_230v" /> Gniazdo 230V</label>
+    <label><input type="checkbox" id="gniazdo_zapalniczki_w_bagazniku" /> Gniazdo zapalniczki w bagażniku</label>
+    <label><input type="checkbox" id="trojkat" /> Trójkąt</label>
+    <label><input type="checkbox" id="gasnica" /> Gaśnica</label>
+    <label><input type="checkbox" id="apteczka" /> Apteczka</label>
+  </section>
+
+  <h2>Inne</h2>
+  <section>
+    <label>Wyposażenie dodatkowe: <textarea id="inne" placeholder="Dodatkowe wyposażenie..."></textarea></label>
+  </section>
+
+  <h2>Kody wyposażenia dodatkowego</h2>
+  <section>
+    <label>Kody: <textarea id="kody" placeholder="Kody wyposażenia..."></textarea></label>
+  </section>
+
+  <section>
+    <button onclick="zapiszDoHTML()">💾 Zapisz do HTML</button>
+  </section>
+
+  <script>
+  function zapiszDoHTML() {
+    const style = `
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #001F3F;
+        color: #ffffff;
+        padding: 20px;
+        font-size: 1.1rem;
+      }
+      h2 {
+        background-color: #007BFF;
+        padding: 10px 15px;
+        border-radius: 10px;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+      }
+      section {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+      }
+      p {
+        margin: 8px 0;
+      }
+      .label {
+        font-weight: 600;
+      }
+    `;
+
+    const fontLink = document.querySelector("link[href*='fonts']").outerHTML;
+
+    const getValue = (id) => {
+      const el = document.getElementById(id);
+      return el ? el.value || (el.checked ? "TAK" : "NIE") : "";
+    };
+
+    const checked = (id) => {
+      const el = document.getElementById(id);
+      return el && el.checked ? "✓ " + el.parentElement.innerText.trim() : "";
+    };
+
+    const selectText = (id) => {
+      const el = document.getElementById(id);
+      return el ? el.options[el.selectedIndex].text : "";
+    };
+
+    const html = `
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Raport wyposażenia</title>
+${fontLink}
+<style>${style}</style>
+</head>
+<body>
+<h2>Weryfikacja wyposażenia</h2>
+<section>
+  <p><span class="label">Marka:</span> ${getValue("marka")}</p>
+  <p><span class="label">Model:</span> ${getValue("model")}</p>
+  <p><span class="label">Wersja:</span> ${getValue("wersja")}</p>
+  <p><span class="label">Generacja:</span> ${getValue("generacja")}</p>
+  <p><span class="label">Dodatkowy pakiet stylistyczny:</span> ${getValue("dodpak")}</p>
+  <p><span class="label">Rodzaj pojazdu:</span> ${selectText("rodzpoj")}</p>
+  <p><span class="label">Typ nadwozia:</span> ${selectText("typnadw")}</p>
+  <p><span class="label">Rodzaj paliwa:</span> ${selectText("rodzpal")}</p>
+  <p><span class="label">AdBlue:</span> ${selectText("adblue")}</p>
+  <p><span class="label">Rok produkcji:</span> ${getValue("rok-produkcji")}</p>
+  <p><span class="label">VIN:</span> ${getValue("vin")}</p>
+  <p><span class="label">Przebieg:</span> ${getValue("przebieg")}</p>
+  <p><span class="label">Pojemność silnika cm3:</span> ${getValue("pojemno-silnika")}</p>
+  <p><span class="label">Kod silnika:</span> ${getValue("kod-silnika")}</p>
+  <p><span class="label">Moc silnika:</span> ${getValue("moc-silnika")}</p>
+  <p><span class="label">Skrzynia biegów:</span> ${selectText("skrzbieg")}</p>
+  <p><span class="label">Napęd:</span> ${selectText("naped")}</p>
+  <p><span class="label">Auto uszkodzone:</span> ${selectText("autouszko")}</p>
+  <p><span class="label">Pojazd importowany:</span> ${selectText("pojimpo")}</p>
+  <p><span class="label">Numer rejestracyjny:</span> ${getValue("numer-rejestracyjny")}</p>
+  <p><span class="label">Data pierwszej rejestracji:</span> ${getValue("data-pierwszej-rejestracji")}</p>
+  <p><span class="label">Liczba drzwi:</span> ${getValue("liczba-drzwi")}</p>
+  <p><span class="label">Liczba miejsc:</span> ${getValue("liczba-miejsc")}</p>
+  <p><span class="label">Liczba właścicieli:</span> ${getValue("liczba-w-a-cicieli")}</p>
+  <p><span class="label">Ilość kluczyków:</span> ${getValue("ilo-kluczyk-w")}</p>
+  <p><span class="label">Auto serwisowane:</span> ${getValue("auto-serwisowane")}</p>
+  <p><span class="label">Kraj pochodzenia:</span> ${getValue("kraj-pochodzenia")}</p>
+  <p><span class="label">Auto zarejestrowane:</span> ${selectText("autozare")}</p>
+  <p><span class="label">Ubezpieczenie do:</span> ${getValue("ubezpieczenie-do")}</p>
+  <p><span class="label">Kolor nadwozia:</span> ${getValue("kolor-nadwozia")}</p>
+  <p><span class="label">Kod lakieru:</span> ${getValue("kod-lakieru")}</p>
+  <p><span class="label">Rozmiar kół:</span> ${getValue("rozmiar-k")}</p>
+  </section>
+
+<h2>Audio i multimedia</h2>
+<section>
+  <p><span class="label">Producent nagłośnienia:</span> ${getValue("naglosnienie")}</p>
+  <p>${[checked("aux"), checked("usb"), checked("carplay"), checked("android_auto"), checked("bluetooth"), checked("radio"), checked("radio_fabryczne"), checked("subwoofer"), checked("mp3"), checked("cd"), checked("zestaw_gosnomowiacy"), checked("adowanie_bezprzewodowe"), checked("nawigacja")].filter(Boolean).join("<br>")}</p>
+</section>
+
+<h2>Komfort</h2>
+<section>
+  <p>${[
+    checked("tap_material"),
+    checked("tap_skorzana"),
+    checked("tap_welurowa"),
+    checked("tap_polskory"),
+    checked("tap_alcantara"),
+    checked("fotele_wentylowane"),
+    checked("fotel_kierowcy_regulowany_elektrycznie"),
+    checked("fotel_pasazera_regulowany_elektrycznie"),
+    checked("kolumna_kierowcy_regulowana_elektrycznie"),
+    checked("podgrzewana_kierownica"),
+    checked("kierownica_multifunkcyjna"),
+    checked("opatki"),
+    checked("fotele_przod_podgrzewane"),
+    checked("fotele_ty_podgrzewane"),
+    checked("fotele_z_funkcja_masazu"),
+    checked("klimatyzacja_manualna"),
+    checked("klimatyzacja_automatyczna"),
+    checked("klimatyzacja_dwustrefowa"),
+    checked("klimatyzacja_dla_pasazerow_kanapy_tylnej"),
+    checked("ogrzewanie_postojowe"),
+    checked("szyby_przednie_elektryczne"),
+    checked("szyby_tylne_elektryczne"),
+    checked("szyba_przednia_podgrzewana"),
+    checked("dach_panoramiczny"),
+    checked("rolety_szyb_drzwi_tylnych"),
+    checked("roleta_szyby_tylnej"),
+    checked("szyberdach"),
+    checked("dach_panoramiczny_otwierany"),
+    checked("podokietnik"),
+    checked("komputer_pokadowy"),
+    checked("adowanie_indukcyjne")
+  ].filter(Boolean).join("<br>")}</p>
+</section>
+
+<h2>Auta elektryczne</h2>
+<section>
+  <p>${[
+    checked("odzysk"),
+    checked("szybkie_ladowanie"),
+    checked("kabel")
+  ].filter(Boolean).join("<br>")}</p>
+</section>
+
+<h2>Bezpieczeństwo</h2>
+<section>
+  <p>${[
+    checked("airbag_kierowca"),
+    checked("airbag_pasażer"),
+    checked("airbag_kolana"),
+    checked("poduszki_powietrzne_boczne"),
+    checked("kurtyny_powietrzne"),
+    checked("poduszki_powietrzne_kanapy_tylnej"),
+    checked("poduszka_powietrzna_centralna"),
+    checked("system_ochrony_pieszych"),
+    checked("isofix"),
+    checked("abs"),
+    checked("esp"),
+    checked("asystent_pasa_ruchu"),
+    checked("asystent_martwego_pola"),
+    checked("aktywny_tempomat"),
+    checked("radar"),
+    checked("monitorowanie_skupienia_kierowcy"),
+    checked("system_rozpoznawania_znakow_drogowych")
+  ].filter(Boolean).join("<br>")}</p>
+</section>
+
+<h2>Oświetlenie zewnętrzne</h2>
+<section>
+  <p><span class="label">Rodzaj reflektorów:</span> ${selectText("reflektory")}</p>
+  <p>${[
+    checked("przeciwmgielne"),
+    checked("dzien_led"),
+    checked("doswietlanie_zakretow"),
+    checked("swiata_obrysowe"),
+    checked("reflektory_dodatkowe"),
+    checked("spryskiwacze_reflektorow")
+  ].filter(Boolean).join("<br>")}</p>
+</section>
+
+<h2>Wspomaganie kierowcy</h2>
+<section>
+  <p>${[
+    checked("czujniki_przod"),
+    checked("czujniki_tyl"),
+    checked("park_assist"),
+    checked("kamera_przod"),
+    checked("kamera_ty"),
+    checked("kamera_360_stopni"),
+    checked("centralny_zamek"),
+    checked("czujnik_deszczu"),
+    checked("klapa_tylna_otwierana_elektrycznie"),
+    checked("klapa_tylna_otwierana_bezdotykowo"),
+    checked("head_up"),
+    checked("system_bezkluczykowy"),
+    checked("system_start-stop"),
+    checked("tempomat"),
+    checked("wspomaganie_kierownicy"),
+    checked("ukad_wspierajacy_ruszanie_ze_wzniesienia"),
+    checked("kamera_noktowizyjna"),
+    checked("hamulec_reczny_elektryczny")
+  ].filter(Boolean).join("<br>")}</p>
+</section>
+
+<h2>Opony i zawieszenie</h2>
+<section>
+  <p><span class="label">Rodzaj opon:</span> ${selectText("opony")}</p>
+  <p><span class="label">Czujniki w oponach:</span> ${selectText("czujniki_opony")}</p>
+  <p>${[
+    checked("zawieszenie_reg"),
+    checked("zawieszenie_sport"),
+    checked("zawieszenie_pneumatyczne"),
+    checked("zawieszenie_hydropneumatyczne"),
+    checked("felgi_aluminiowe"),
+    checked("dodatkowy_komplet_opon"),
+    checked("koo_zapasowe"),
+    checked("zestaw_naprawczy")
+  ].filter(Boolean).join("<br>")}</p>
+</section>
+
+<h2>Wyposażenie dodatkowe</h2>
+<section>
+  <p>${[
+    checked("wydech"),
+    checked("hak"),
+    checked("hak_elektryczny"),
+    checked("relingi_dachowe"),
+    checked("bagaznik_dachowy"),
+    checked("szyby_przyciemniane"),
+    checked("alarm"),
+    checked("roleta_bagaznika"),
+    checked("dociaganie_drzwi"),
+    checked("gniazdo_230v"),
+    checked("gniazdo_zapalniczki_w_bagazniku"),
+    checked("trojkat"),
+    checked("gasnica"),
+    checked("apteczka")
+  ].filter(Boolean).join("<br>")}</p>
+</section>
+
+<h2>Inne</h2>
+<section>
+  <p>${getValue("inne")}</p>
+</section>
+
+<h2>Kody wyposażenia dodatkowego</h2>
+<section>
+  <p>${getValue("kody")}</p>
+</section>
+</body>
+</html>`;
+
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "raport_wyposazenia.html";
+    link.click();
+  }
+</script>
+
+
+</body>
+</html>
